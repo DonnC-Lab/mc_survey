@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:intl/intl.dart';
 import 'package:linkable/linkable.dart';
-import 'package:mc_core_constants/mc_core_constants.dart';
 import 'package:mini_campus_core/mini_campus_core.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:relative_scale/relative_scale.dart';
@@ -63,7 +62,7 @@ void SurveyDetailsModal(
                           style:
                               Theme.of(context).textTheme.subtitle2?.copyWith(
                                     fontSize: 12,
-                                    color: greyTextShade,
+                                    color: McAppColors.appGreyShadeColor,
                                   ),
                         ),
                       ],
@@ -71,10 +70,8 @@ void SurveyDetailsModal(
                     const Spacer(),
                     Text(
                       DateFormat.yMMMMd().format(survey.expireOn),
-                      style: Theme.of(context)
-                          .textTheme
-                          .subtitle2
-                          ?.copyWith(fontSize: 11, color: greyTextShade),
+                      style: Theme.of(context).textTheme.subtitle2?.copyWith(
+                          fontSize: 11, color: McAppColors.appGreyShadeColor),
                     ),
                   ],
                 ),
@@ -83,25 +80,27 @@ void SurveyDetailsModal(
                   text: survey.description,
                   linkColor: Colors.blueAccent,
                   maxLines: 10,
-                  textColor: greyTextShade,
+                  textColor: McAppColors.appGreyShadeColor,
                   style: Theme.of(context).textTheme.subtitle2?.copyWith(
                         fontSize: 13,
-                        color: greyTextShade,
+                        color: McAppColors.appGreyShadeColor,
                       ),
                 ),
-                const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CustomRoundedButton(
-                    text: 'Start Survey',
-                    onTap: survey.expireOn.isBefore(DateTime.now())
-                        ? null
-                        : () async {
+                survey.expireOn.isAfter(DateTime.now())
+                    ? const SizedBox(height: 10)
+                    : const SizedBox.shrink(),
+                survey.expireOn.isAfter(DateTime.now())
+                    ? Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CustomRoundedButton(
+                          text: 'Start Survey',
+                          onTap: () async {
                             await launchInAppWebBrowser(
                                 url: survey.link, themeMode: mode);
                           },
-                  ),
-                ),
+                        ),
+                      )
+                    : const SizedBox.shrink(),
                 const Divider(),
                 CustomProfileAvatar(
                   studentId: survey.owner,

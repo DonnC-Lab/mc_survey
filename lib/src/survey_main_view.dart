@@ -4,15 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:intl/intl.dart';
-import 'package:mc_core_constants/mc_core_constants.dart';
-import 'package:mini_campus_core/mini_campus_core.dart';
-import 'package:mini_campus_core_components/mini_campus_core_components.dart';
-import 'package:relative_scale/relative_scale.dart';
-
 import 'package:mc_survey/src/data/survey_model.dart';
 import 'package:mc_survey/src/pages/add_survey_view.dart';
 import 'package:mc_survey/src/pages/survey_details_modal.dart';
 import 'package:mc_survey/src/services/survey_repository.dart';
+import 'package:mini_campus_core/mini_campus_core.dart';
+import 'package:relative_scale/relative_scale.dart';
 
 class SurveyMainView extends ConsumerStatefulWidget {
   const SurveyMainView({Key? key}) : super(key: key);
@@ -28,14 +25,14 @@ class _SurveyMainViewState extends ConsumerState<SurveyMainView> {
 
     final _style = Theme.of(context).textTheme.subtitle2?.copyWith(
           fontSize: 12,
-          color: greyTextShade,
+          color: McAppColors.appGreyShadeColor,
           fontWeight: FontWeight.w400,
           fontStyle: FontStyle.italic,
         );
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        backgroundColor: bluishColor,
+        backgroundColor: McAppColors.appMainColor,
         tooltip: 'add new Survey',
         onPressed: () {
           routeTo(context, const AddSurveyView());

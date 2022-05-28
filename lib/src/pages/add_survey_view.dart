@@ -4,9 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
-import 'package:mc_core_constants/mc_core_constants.dart';
 import 'package:mini_campus_core/mini_campus_core.dart';
-import 'package:mini_campus_core_components/mini_campus_core_components.dart';
 
 import '../data/survey_model.dart';
 import '../services/survey_repository.dart';
@@ -54,7 +52,7 @@ class _AddSurveyViewState extends ConsumerState<AddSurveyView> {
                       '✍ \nGet started creating your google form survey',
                       style: Theme.of(context).textTheme.subtitle1?.copyWith(
                             fontSize: 13,
-                            color: bluishColor,
+                            color: McAppColors.appMainColor,
                           ),
                     ),
                   ),
