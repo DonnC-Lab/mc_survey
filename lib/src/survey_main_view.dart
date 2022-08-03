@@ -131,7 +131,8 @@ class _SurveyMainViewState extends ConsumerState<SurveyMainView> {
 
                   //
                   else {
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(
+                        child: CircularProgressIndicator.adaptive());
                   }
                 },
               ),
